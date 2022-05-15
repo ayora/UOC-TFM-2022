@@ -3,7 +3,7 @@
 En esta carpeta contiene los ficheros de la aplicación web, desarrollada para mostrar una serie de indicadores. Estos indicadores se basan en la información extraida a partir de los tweets procesados en la parte de la ingesta:
 
 - Top 10 de las cryptos más mencionadas y su polaridad.
-- Top 10 de los hashtagas más usados y su polaridad.
+- Top 10 de los hashtags más usados y su polaridad.
 - Top 10 de los usuarios de Twitter más activos con el número de seguidores.
 - Nuevas cryptos aparecidas 
 
@@ -31,4 +31,4 @@ Un vez creado el entorno, en el fichero **cryptowebapp.cfg** se configura la con
 	flask run
 ```
 
-El acceso a la aplicación se realizar mediante navegador en la url: <https://localhost:5000>
+El acceso a la aplicación se realizar mediante navegador en la url: <http://localhost:5000>
