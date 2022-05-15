@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Crypto Analysis</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_bulma.css') }}" />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}" />
+
+</head>
+
+<body>
+
+   <div class="hero-head">
+      <nav class="navbar">
+         <section class="section">
+            <h1 class="title">Crypto Analytics</h1>
+         </section>
+      </nav>
+   </div>
+
+   <section class="hero">
+
+      <div class="hero-body">
+
+         <div class="container">
+
+               <b>Selecciona un rango temporal:</b> 
+                  
+               <a href="{{ url_for('home', time=1) }}">24 horas</a> | 
+               <a href="{{ url_for('home', time=7) }}">7 días</a> |   
+               <a href="{{ url_for('home', time=30) }}">30 días</a> | 
+               <a href="{{ url_for('home', time=365) }}">1 año</a>
+
+            <section class="section">
+               
+                  <div class="columns is-1-mobile is-0-tablet is-5-desktop is-8-widescreen is-2-fullhd">
+
+                     <div class="column is-half">
+
+                        <table class="table is-hoverable is-fullwidth">
+                           <thead>
+                              <tr>
+                                 <th>Crypto</th>
+                                 <th>Tweets</th>
+                                 <th><img src="{{ url_for('static', filename='img/smile.png') }}" width="32"/></th>
+                                 <th><img src="{{ url_for('static', filename='img/neutral.png') }}" width="32"/></th>
+                                 <th><img src="{{ url_for('static', filename='img/sad.png') }}" width="32"/></th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              {% for crypto in cryptos_tweeted %}
+                                 <tr>
+                                    <td>${{ crypto._id.crypto }}</td>
+                                    <td class="column-center">{{ crypto.count }}</td> 
+                                    <td class="column-center">{{ (crypto.positive_polarity / crypto.count ) | format_porcentage }}</td> 
+                                    <td class="column-center">{{ (crypto.neutral_polarity / crypto.count ) | format_porcentage }}</td> 
+                                    <td class="column-center">{{ (crypto.negative_polarity / crypto.count ) | format_porcentage }}</td> 
+                                 </tr>
+                              {% endfor %}
+                           </tbody>
+                        </table>
+                     </div>
+
+                     <div class="column">
+
+                        <table class="table is-hoverable is-fullwidth">
+                           <thead>
+                              <tr>
+                                 <th>Hashtag</th>
+                                 <th>Tweets</th>
+                                 <th><img src="{{ url_for('static', filename='img/smile.png') }}" width="32"/></th>
+                                 <th><img src="{{ url_for('static', filename='img/neutral.png') }}" width="32"/></th>
+                                 <th><img src="{{ url_for('static', filename='img/sad.png') }}" width="32"/></th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              {% for hashtag in hashtags_tweeted %}
+                                 <tr>
+                                    <td>#{{ hashtag._id.hashtag }}</td>
+                                    <td class="column-center">{{ hashtag.count }}</td> 
+                                    <td class="column-center">{{ (hashtag.positive_polarity / hashtag.count ) | format_porcentage }}</td> 
+                                    <td class="column-center">{{ (hashtag.neutral_polarity / hashtag.count ) | format_porcentage }}</td> 
+                                    <td class="column-center">{{ (hashtag.negative_polarity / hashtag.count ) | format_porcentage }}</td> 
+                                 </tr>
+                              {% endfor %}
+                           </tbody>
+                        </table>
+                     
+                     </div>
+
+                  </div>
+
+            </section>
+
+
+            <section class="section">
+               
+                  <div class="columns is-1-mobile is-0-tablet is-5-desktop is-8-widescreen is-2-fullhd">
+
+                     <div class="column is-half">
+
+                        <table class="table is-hoverable is-fullwidth">
+                           <thead>
+                              <tr>
+                                 <th>Twitter User</th>
+                                 <th>Followers</th>
+                                 <th>Tweets</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              {% for user in twitter_users %}
+                                 <tr>
+                                    <td>{{ user._id.username }}</td>
+                                    <td class="column-center">{{ user._id.followers }}</td>
+                                    <td class="column-center">{{ user.count }}</td> 
+                                 </tr>
+                              {% endfor %}
+                           </tbody>    
+                        </table>
+                     
+                     </div>
+
+                     <div class="column">
+
+                        <table class="table is-hoverable is-fullwidth">
+                           <thead>
+                              <tr>
+                                 <th>Nuevas Cryptos aparecidas en los últimos {{ time }} días</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              {% for crypto in new_cryptos %}
+                                 <tr>
+                                    <td>${{ crypto._id.crypto }}</td>
+                                 </tr>
+                              {% endfor %}
+                           </tbody>
+                        </table>
+                     
+                     </div>
+
+                  </div>
+
+            </section>
+
+         </div>
+        
+      </div>
+
+   </section>
+
+
+</body>
+</html>

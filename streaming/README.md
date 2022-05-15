@@ -6,13 +6,21 @@ En esta carpeta se encuentran los scripts desarrollados para la ingesta de tweet
 
 - **tweepy_to_mongo_transform.py**:
 
-- **stream.cfg**: fichero de configuración con los parámetros necesario para las conexiónes, tanto del API de Twitter como de la base de datos MongoDB.
+- **stream.cfg**: fichero de configuración con los parámetros necesario para las conexiones, tanto del API de Twitter como de la base de datos MongoDB.
 
 - **dependencies.txt**: contiene el listado de las dependencias para instalar en un virtualenv y ejecutar los scripts.
 
 ### Ejecución
 
 Para llevar a cabo la ingesta de tweets será necesario ejecutar los dos scripts:
+
+```python
+	python3 -m venv .venv
+	
+	source .venv/bin/activate
+
+	pip install -r dependencies.txt
+```
 
 ```python
 	python tweepy_to_mongo_extract.py

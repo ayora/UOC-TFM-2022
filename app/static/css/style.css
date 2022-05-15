@@ -1,0 +1,27 @@
+
+.navbar {
+  border-bottom: 1px solid #00d1b2;
+  padding-left: 5%;
+}
+
+.title {
+  color: #00d1b2;
+}
+
+
+/* Table */
+
+.table th {
+  color: #363636;
+  text-align: center;
+}
+
+.column-center {
+  text-align: center;
+}
+.column-left {
+  text-align: left;
+}
+.column-rigth {
+  text-align: right;
+}
